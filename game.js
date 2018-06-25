@@ -24,8 +24,11 @@ Game.prototype.clear = function() {
 
 Game.prototype.reset = function(){
   this.background = new Background(this);
+  this.apple = new Apple(this);
+  //this.snake = new Snake(this);
 };
 
 Game.prototype.draw = function() {
   this.background.draw();
+  this.apple.draw();
 };

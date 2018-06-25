@@ -1,24 +1,21 @@
 function Snake() {
   this.x = 350;
   this.y = 350;
-  this.maxX = 700;
-  this.minX = 0;
+  this.height = 32;
+  this.width = 32;
   this.direction = right;
 }
 Snake.prototype.moveRight = function() {
-  this.x += 20;
 
 };
 Snake.prototype.moveLeft = function() {
-  this.x -= 20;
- 
+
 };
 Snake.prototype.moveUp = function() {
-  this.x += 20;
 
 };
 Snake.prototype.moveDown = function() {
-  this.x -= 20;
+
  
   
 };
