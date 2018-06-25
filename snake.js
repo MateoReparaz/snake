@@ -5,21 +5,7 @@ function Snake() {
   this.width = 32;
   this.direction = right;
 }
-Snake.prototype.moveRight = function() {
-
-};
-Snake.prototype.moveLeft = function() {
-
-};
-Snake.prototype.moveUp = function() {
-
-};
-Snake.prototype.moveDown = function() {
-
- 
-  
-};
-var directin;
+Snake.prototype.setListeners = function(){
 document.onkeydown = function(e) {
     var key= (e.keyCode) 
       if(key == 37 && direction != right){
@@ -34,5 +20,5 @@ document.onkeydown = function(e) {
       else if (key == 40 && direction != up){
         this.direction = down;
       }
-  };
-
+  }.bind(this);
+};
