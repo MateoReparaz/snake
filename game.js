@@ -4,6 +4,8 @@ function Game() {
   this.fps = 120;
   this.reset();
   this.score = 0;
+  this.audioEat = new Audio('audio/eat.mp3');
+  this.audioDead = new Audio('audio/dead.mp3')
 }
 
 Game.prototype.start = function() {
@@ -47,8 +49,11 @@ Game.prototype.colision = function() {
     this.snake.cobra.x[0] > 768 ||
     this.snake.cobra.y[0] < 0 ||
     this.snake.cobra.y[0] > 768
+    
   ) {
-    this.reset();
+    this.audioDead.play();
+    alert("Try Again")
+    location.reload();
   }
 };
 
@@ -59,6 +64,7 @@ Game.prototype.eat = function() {
     this.snake.cobra.y[0] < this.apple.y + 32 &&
     this.snake.cobra.y[0] + 32 > this.apple.y
   ) {
+    this.audioEat.play();
     this.updateScore();
     this.apple = new Apple(this);
   }
@@ -67,5 +73,4 @@ Game.prototype.eat = function() {
 Game.prototype.updateScore = function() {
   this.score += 7;
   this.snake.cobra.length++;
-
 };

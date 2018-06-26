@@ -62,6 +62,7 @@ Snake.prototype.move = function() {
     this.cobra.vx = 0;
     this.cobra.vy = 1;
   }
+
 };
 
 Snake.prototype.grow = function() {
