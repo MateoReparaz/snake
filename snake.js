@@ -1,11 +1,14 @@
 function Snake(game, apple) {
+  this.cobra = [{ x: 32, y: 32, height: 32, width: 32 }];
+  this.segment = {
+    x: this.cobra[0]["x"],
+    y: this.cobra[0]["y"],
+    height: 32,
+    width: 32
+  };
   this.game = game;
   this.apple = apple;
-  this.x = 1 * this.apple.width;
-  this.y = 1 * this.apple.height;
-  this.width = this.apple.width;
-  this.height = this.apple.height;
-  this.vx =  this.apple.height;
+  this.vx = this.apple.height;
   this.vy = 0;
   this.direction = "right";
   this.setListeners();
@@ -27,20 +30,28 @@ Snake.prototype.setListeners = function() {
 };
 
 Snake.prototype.draw = function() {
-  this.game.ctx.fillStyle = "black";
-  this.game.ctx.fillRect(this.x, this.y, this.width, this.height);
-  this.game.ctx.strokeStyle = "white";
-  this.game.ctx.strokeRect(this.x, this.y, this.width, this.height);
+  this.cobra.forEach(
+    function(e) {
+      this.game.ctx.fillStyle = "black";
+      this.game.ctx.fillRect(e.x, e.y, e.width, e.width);
+      this.game.ctx.strokeStyle = "white";
+      this.game.ctx.strokeRect(e.x, e.y, e.width, e.width);
+    }.bind(this)
+  );
 };
 
 Snake.prototype.move = function() {
-  if (this.direction == "right"){
-    this.x += this.vx;   
-  }else if (this.direction == "left"){
-    this.x += this.vx * -1;
-  }else if (this.direction == "up"){
-    this.y += this.vx * -1;
-  }else if (this.direction == "down"){
-    this.y += this.vx;
-  }
+  this.cobra.forEach(
+    function(e) {
+      if (this.direction == "right") {
+        e.x += 32;
+      } else if (this.direction == "left") {
+        e.x += 32 * -1;
+      } else if (this.direction == "up") {
+        e.y += 32 * -1;
+      } else if (this.direction == "down") {
+        e.y += 32;
+      }
+    }.bind(this)
+  );
 };

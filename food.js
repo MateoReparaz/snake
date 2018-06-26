@@ -8,7 +8,6 @@ function Apple(game) {
   this.img.src = "images/food.png";
 }
 Apple.prototype.draw = function() {
-  console.log(this.x)
   this.game.ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
 };
 

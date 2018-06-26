@@ -1,7 +1,7 @@
 function Background(game) {
   this.game = game;
   this.img = new Image();
-  this.img.src = "images/grass.gif";
+  this.img.src = "images/sand.png";
   this.x = 0;
   this.y = 0;
 }
