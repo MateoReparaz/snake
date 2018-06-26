@@ -1,55 +1,51 @@
 body {
-    padding: 0;
-    text-align: center;
-    background-image: url(images/background.jpg);
-    object-fit: cover;
-    font-family: 'Press Start 2P', cursive;
-    font-size: 20px;
-  }
-  
-  .game {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-  }
-  .game-intro{
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+  padding: 0;
+  text-align: center;
+  background-image: url(images/background.jpg);
+  object-fit: cover;
+  font-family: "Press Start 2P", cursive;
+  font-size: 20px;
+}
 
-  }
-  .game-intro p {
-    font-size: 1,5em;
-    font-family: 'Press Start 2P', cursive;
-    color: #fff;
-    
-  }
-  .game-intro h1 {
-    font-size: 1,5em;
-    color: #fff;
-  }
-  .logo-img {
-    width: 350px;
-    
-  }
-  
-  
-  body button {
-    font-size: 1.8em;
-    background-color: #3f0b02;
-    color: #fff;
-    padding: 20px 40px;
-    border: 0;
-    box-shadow: 10px 5px 5px black;;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    font-family: 'Press Start 2P', cursive;
-  }
-  
-  #game-board {
-      float: left;
-      padding: 20px 0px;
-  }
-  canvas{
-      border: 10px solid rgb(116, 114, 114);
-  }
+.game {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.game-intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.game-intro p {
+  font-size: 1, 5em;
+  font-family: "Press Start 2P", cursive;
+  color: #fff;
+}
+.game-intro h1 {
+  font-size: 1, 5em;
+  color: #fff;
+}
+.logo-img {
+  width: 350px;
+}
+
+body button {
+  font-size: 1.8em;
+  background-color: #3f0b02;
+  color: #fff;
+  padding: 20px 40px;
+  border: 0;
+  box-shadow: 10px 5px 5px black;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  font-family: "Press Start 2P", cursive;
+}
+
+#game-board {
+  float: left;
+  padding: 20px 0px;
+}
+canvas {
+  border: 10px solid rgb(116, 114, 114);
+}

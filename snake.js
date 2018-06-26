@@ -1,11 +1,11 @@
 function Snake(game, apple) {
   this.game = game;
   this.apple = apple;
-  this.x = 12 * this.apple.width;
-  this.y = 12 * this.apple.height;
+  this.x = 1 * this.apple.width;
+  this.y = 1 * this.apple.height;
   this.width = this.apple.width;
   this.height = this.apple.height;
-  this.vx =  this.apple.height/16;
+  this.vx =  this.apple.height;
   this.vy = 0;
   this.direction = "right";
   this.setListeners();
@@ -14,7 +14,6 @@ function Snake(game, apple) {
 Snake.prototype.setListeners = function() {
   document.onkeydown = function(e) {
     var key = e.keyCode;
-    console.log(key);
     if (key == 37 && this.direction != "right") {
       this.direction = "left";
     } else if (key == 39 && this.direction != "left") {
@@ -24,7 +23,6 @@ Snake.prototype.setListeners = function() {
     } else if (key == 40 && this.direction != "up") {
       this.direction = "down";
     }
-    console.log(this.direction);
   }.bind(this);
 };
 
@@ -37,7 +35,7 @@ Snake.prototype.draw = function() {
 
 Snake.prototype.move = function() {
   if (this.direction == "right"){
-    this.x += this.vx;
+    this.x += this.vx;   
   }else if (this.direction == "left"){
     this.x += this.vx * -1;
   }else if (this.direction == "up"){
