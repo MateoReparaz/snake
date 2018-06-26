@@ -67,10 +67,6 @@ Game.prototype.eat = function() {
 
 Game.prototype.updateScore = function() {
   this.score += 7;
-  this.grow();
-   console.log(this.snake.cobra)
+  this.snake.grow();
 };
 
-Game.prototype.grow = function() {
-  this.snake.cobra.push(this.snake.segment);
-};

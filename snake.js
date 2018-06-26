@@ -1,11 +1,5 @@
 function Snake(game, apple) {
   this.cobra = [{ x: 32, y: 32, height: 32, width: 32 }];
-  this.segment = {
-    x: this.cobra[0]["x"],
-    y: this.cobra[0]["y"],
-    height: 32,
-    width: 32
-  };
   this.game = game;
   this.apple = apple;
   this.vx = this.apple.height;
@@ -54,4 +48,15 @@ Snake.prototype.move = function() {
       }
     }.bind(this)
   );
+};
+
+Snake.prototype.grow = function() {
+  this.segment = {
+    x: this.cobra[0]["x"]-this.cobra.length*32,
+    y: this.cobra[0]["y"]-this.cobra.length*32,
+    height: 32,
+    width: 32
+  };
+  this.cobra.push(this.segment);
+  console.log(this.cobra)
 };
