@@ -1,62 +1,73 @@
 function Snake(game, apple) {
-  this.cobra = [{ x: 32, y: 32, height: 32, width: 32 }];
+  this.cobra = {
+    x: [32],
+    y: [32],
+    height: 32,
+    width: 32,
+    length: 1,
+    vx: 32,
+    vy: 0,
+    direction: "right"
+  };
   this.game = game;
   this.apple = apple;
-  this.vx = this.apple.height;
-  this.vy = 0;
-  this.direction = "right";
   this.setListeners();
 }
 
 Snake.prototype.setListeners = function() {
   document.onkeydown = function(e) {
     var key = e.keyCode;
-    if (key == 37 && this.direction != "right") {
-      this.direction = "left";
-    } else if (key == 39 && this.direction != "left") {
-      this.direction = "right";
-    } else if (key == 38 && this.direction != "down") {
-      this.direction = "up";
-    } else if (key == 40 && this.direction != "up") {
-      this.direction = "down";
+    if (key == 37 && this.cobra.direction != "right") {
+      this.cobra.direction = "left";
+    } else if (key == 39 && this.cobra.direction != "left") {
+      this.cobra.direction = "right";
+    } else if (key == 38 && this.cobra.direction != "down") {
+      this.cobra.direction = "up";
+    } else if (key == 40 && this.cobra.direction != "up") {
+      this.cobra.direction = "down";
     }
   }.bind(this);
 };
 
 Snake.prototype.draw = function() {
-  this.cobra.forEach(
-    function(e) {
-      this.game.ctx.fillStyle = "black";
-      this.game.ctx.fillRect(e.x, e.y, e.width, e.width);
-      this.game.ctx.strokeStyle = "white";
-      this.game.ctx.strokeRect(e.x, e.y, e.width, e.width);
-    }.bind(this)
-  );
+  for (var i = 0; i < this.cobra.length; i++) {
+    this.game.ctx.fillStyle = "black";
+    this.game.ctx.fillRect(
+      this.cobra.x[i],
+      this.cobra.y[i],
+      this.cobra.width,
+      this.cobra.height
+    );
+    this.game.ctx.strokeStyle = "white";
+    this.game.ctx.strokeRect(
+      this.cobra.x[i],
+      this.cobra.y[i],
+      this.cobra.width,
+      this.cobra.height
+    );
+  }
 };
 
 Snake.prototype.move = function() {
-  this.cobra.forEach(
-    function(e) {
-      if (this.direction == "right") {
-        e.x += 32;
-      } else if (this.direction == "left") {
-        e.x += 32 * -1;
-      } else if (this.direction == "up") {
-        e.y += 32 * -1;
-      } else if (this.direction == "down") {
-        e.y += 32;
-      }
-    }.bind(this)
-  );
+  if (this.cobra.direction == "right") {
+    this.cobra.vx = 1;
+    this.cobra.vy = 0;
+  } else if (this.cobra.direction == "left") {
+    this.cobra.vx = -1;
+    this.cobra.vy = 0;
+  } else if (this.cobra.direction == "up") {
+    this.cobra.vx = 0;
+    this.cobra.vy = -1;
+  } else if (this.cobra.direction == "down") {
+    this.cobra.vx = 0;
+    this.cobra.vy = 1;
+  }
 };
 
 Snake.prototype.grow = function() {
-  this.segment = {
-    x: this.cobra[0]["x"]-this.cobra.length*32,
-    y: this.cobra[0]["y"]-this.cobra.length*32,
-    height: 32,
-    width: 32
-  };
-  this.cobra.push(this.segment);
-  console.log(this.cobra)
+  var newX = this.cobra.x[0] + this.cobra.vx * 32;
+  var newY = this.cobra.y[0] + this.cobra.vy * 32;
+  this.cobra.x.unshift(newX);
+  this.cobra.y.unshift(newY);
+
 };

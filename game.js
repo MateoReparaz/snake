@@ -13,6 +13,7 @@ Game.prototype.start = function() {
       this.draw();
       this.move();
       this.colision();
+      this.snake.grow();
     }.bind(this),
     this.fps
   );
@@ -41,32 +42,30 @@ Game.prototype.move = function() {
 
 Game.prototype.colision = function() {
   this.eat();
-  this.snake.cobra.forEach(
-    function(e) {
-      if (e.x < 0 || e.x > 768 || e.y < 0 || e.y > 768) {
-        this.reset();
-      }
-    }.bind(this)
-  );
+  if (
+    this.snake.cobra.x[0] < 0 ||
+    this.snake.cobra.x[0] > 768 ||
+    this.snake.cobra.y[0] < 0 ||
+    this.snake.cobra.y[0] > 768
+  ) {
+    this.reset();
+  }
 };
 
 Game.prototype.eat = function() {
-  this.snake.cobra.forEach(function(e) {
-      if (
-        e.x < this.apple.x + 32 &&
-        e.x + 32 > this.apple.x &&
-        e.y < this.apple.y + 32 &&
-        e.y + 32 > this.apple.y
-      ) {
-        this.updateScore();
-        this.apple = new Apple(this);
-      }
-    }.bind(this)
-  );
+  if (
+    this.snake.cobra.x[0] < this.apple.x + 32 &&
+    this.snake.cobra.x[0] + 32 > this.apple.x &&
+    this.snake.cobra.y[0] < this.apple.y + 32 &&
+    this.snake.cobra.y[0] + 32 > this.apple.y
+  ) {
+    this.updateScore();
+    this.apple = new Apple(this);
+  }
 };
 
 Game.prototype.updateScore = function() {
   this.score += 7;
-  this.snake.grow();
-};
+  this.snake.cobra.length++;
 
+};
