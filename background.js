@@ -1,7 +1,13 @@
-function Background(game) {
+function Background(game, config) {
   this.game = game;
   this.img = new Image();
-  this.img.src = "images/sand.png";
+  if (config == 1) {
+    this.img.src = "images/sand.png";
+  } else if (config == 2) {
+    this.img.src = "images/water.png";
+  } else {
+    this.img.src = "images/desert.png";
+  }
   this.x = 0;
   this.y = 0;
 }
