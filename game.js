@@ -1,5 +1,5 @@
 function Game(canvas, config) {
-  document.getElementById("cover").style.display = "none"
+  document.getElementById("cover").style.display = "none";
   this.canvas = document.getElementById(canvas);
   this.ctx = this.canvas.getContext("2d");
   this.audioEat = new Audio("audio/eat.mp3");
@@ -99,5 +99,13 @@ Game.prototype.updateScore = function(config) {
 
 Game.prototype.gameOver = function() {
   this.audioDead.play();
-  document.getElementById("game-over").style.display = "flex"
+  document.getElementById("game-over").style.display = "flex";
+  this.resetEvent()
+};
+Game.prototype.resetEvent = function() {
+  window.onkeydown = function(event) {
+    if (event.key == "Enter") {
+      window.location.reload();
+    }
+  };
 };
