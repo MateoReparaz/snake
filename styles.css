@@ -74,11 +74,13 @@ canvas {
   color: white;
   font-size: 2em;
   display: none;
+  flex-direction: column;
+  justify-content:center;
   align-items: center;
-  justify-content: center;
 }
 #cover {
   position: absolute;
+  background:rgb(0,0,0,0.5);
   top: 0;
   left: 0;
   width: 100%;
