@@ -50,5 +50,8 @@ canvas {
   border: 10px solid rgb(116, 114, 114);
 }
 #score {
-  
+font-size:1.5em
+}
+#score:before{
+  content: "SCORE: ";
 }

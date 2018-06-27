@@ -1,7 +1,7 @@
 function Game() {
   this.canvas = document.getElementById("canvas");
   this.ctx = this.canvas.getContext("2d");
-  this.fps = 60;
+  this.fps = 120;
   this.reset();
   this.score = 0;
   this.audioEat = new Audio("audio/eat.mp3");
@@ -78,8 +78,8 @@ Game.prototype.eat = function() {
 };
 
 Game.prototype.updateScore = function() {
-  document.getElementById("score").innerText = "SCORE:" + this.score
   this.score += 7;
+  document.getElementById("score").innerText = this.score
   this.snake.cobra.length++;
 };
 
