@@ -7,27 +7,13 @@ function Snake(game, apple) {
     length: 1,
     vx: 32,
     vy: 0,
-    direction: "right"
+    direction: "right",
+    inputLocked:false
   };
   this.game = game;
   this.apple = apple;
   this.setListeners();
 }
-
-Snake.prototype.setListeners = function() {
-  document.onkeydown = function(e) {
-    var key = e.keyCode;
-    if (key == 37 && this.cobra.direction != "right") {
-      this.cobra.direction = "left";
-    } else if (key == 39 && this.cobra.direction != "left") {
-      this.cobra.direction = "right";
-    } else if (key == 38 && this.cobra.direction != "down") {
-      this.cobra.direction = "up";
-    } else if (key == 40 && this.cobra.direction != "up") {
-      this.cobra.direction = "down";
-    }
-  }.bind(this);
-};
 
 Snake.prototype.draw = function() {
   for (var i = 0; i < this.cobra.length; i++) {
@@ -48,6 +34,25 @@ Snake.prototype.draw = function() {
   }
 };
 
+Snake.prototype.setListeners = function() {
+  document.onkeydown = function(event) {
+    if(!this.cobra.inputLocked){
+    if (event.key == "ArrowLeft" && this.cobra.direction != "right") {
+      this.cobra.inputLocked=true;
+      this.cobra.direction = "left";
+    } else if (event.key == "ArrowRight" && this.cobra.direction != "left") {
+      this.cobra.inputLocked=true;
+      this.cobra.direction = "right";
+    } else if (event.key == "ArrowUp" && this.cobra.direction != "down") {
+      this.cobra.inputLocked=true;
+      this.cobra.direction = "up";
+    } else if (event.key == "ArrowDown" && this.cobra.direction != "up") {
+      this.cobra.inputLocked=true;
+      this.cobra.direction = "down";
+    }}
+  }.bind(this);
+};
+
 Snake.prototype.move = function() {
   if (this.cobra.direction == "right") {
     this.cobra.vx = 1;
@@ -62,7 +67,6 @@ Snake.prototype.move = function() {
     this.cobra.vx = 0;
     this.cobra.vy = 1;
   }
-
 };
 
 Snake.prototype.grow = function() {
@@ -70,5 +74,5 @@ Snake.prototype.grow = function() {
   var newY = this.cobra.y[0] + this.cobra.vy * 32;
   this.cobra.x.unshift(newX);
   this.cobra.y.unshift(newY);
-
+  this.cobra.inputLocked=false;
 };

@@ -7,6 +7,7 @@ function Game(canvas, config) {
   this.reset(config);
   this.start(config);
   this.score = 0;
+  this.appleExists = false;
 }
 
 Game.prototype.start = function(config) {
@@ -19,8 +20,10 @@ Game.prototype.start = function(config) {
       this.colisionSelf();
       this.eat(config);
       this.snake.grow();
-      if (this.snake.cobra.length % 4 == 0 && !this.greenApple){  //! es hacer falsy this.greenapple envez de usar this.greenApple == undefined
+      if (this.score != 0 && this.score % 4 == 0 && !this.greenApple && !this.appleExists){  //! es hacer falsy this.greenapple envez de usar this.greenApple == undefined
         this.greenApple = new GreenApple(this);
+        this.eraseTimer()
+        this.appleExists = true;
         }
     }.bind(this),
     this.fps
@@ -46,7 +49,6 @@ Game.prototype.reset = function(config) {
 };
 
 Game.prototype.draw = function() {
-  console.log(this.greenApple)
   this.background.draw();
   this.apple.draw();
   this.snake.draw();
@@ -89,6 +91,7 @@ Game.prototype.eat = function(config) {
     this.audioEat.play();
     this.updateScore(config);
     this.apple = new Apple(this);
+    this.appleExists = false;
   }  
   if (this.greenApple != undefined &&
     this.snake.cobra.x[0] < this.greenApple.x + 32 &&
@@ -97,8 +100,10 @@ Game.prototype.eat = function(config) {
     this.snake.cobra.y[0] + 32 > this.greenApple.y
   ) {
     this.audioEat.play();
-    this.updateScore(config);
+    this.score += 23;
+    this.snake.cobra.length --;
     this.greenApple = undefined;
+    
   }
 };
 
@@ -129,3 +134,10 @@ Game.prototype.resetEvent = function() {
     }
   };
 };
+
+Game.prototype.eraseTimer = function(){
+  setTimeout(function(){
+    this.greenApple = undefined;
+  }.bind(this),4000)
+
+}    
