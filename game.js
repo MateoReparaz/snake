@@ -8,6 +8,7 @@ function Game(canvas, config) {
   this.start(config);
   this.score = 0;
   this.appleExists = false;
+  this.foodTimer = parseInt(4500/this.fps);
 }
 
 Game.prototype.start = function(config) {
@@ -24,7 +25,10 @@ Game.prototype.start = function(config) {
         this.greenApple = new GreenApple(this);
         this.eraseTimer()
         this.appleExists = true;
-        }
+        } 
+      if (this.appleExists){
+        this.foodTimer--
+      }
     }.bind(this),
     this.fps
   );
@@ -91,7 +95,6 @@ Game.prototype.eat = function(config) {
     this.audioEat.play();
     this.updateScore(config);
     this.apple = new Apple(this);
-    this.appleExists = false;
   }  
   if (this.greenApple != undefined &&
     this.snake.cobra.x[0] < this.greenApple.x + 32 &&
@@ -103,7 +106,6 @@ Game.prototype.eat = function(config) {
     this.score += 23;
     this.snake.cobra.length --;
     this.greenApple = undefined;
-    
   }
 };
 
@@ -138,6 +140,8 @@ Game.prototype.resetEvent = function() {
 Game.prototype.eraseTimer = function(){
   setTimeout(function(){
     this.greenApple = undefined;
+    this.appleExists = false;
+    this.foodTimer = parseInt(4500/this.fps);
   }.bind(this),4500)
 
 }    

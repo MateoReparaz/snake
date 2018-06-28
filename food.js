@@ -28,5 +28,5 @@ GreenApple.prototype.draw = function() {
   this.game.ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
   this.game.ctx.fillStyle = 'white';
   this.game.ctx.font = "20px 'Press Start 2P'";
-  this.game.ctx.fillText("hola",40,40);
+  this.game.ctx.fillText(this.game.foodTimer,40,40);
 };
