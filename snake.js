@@ -37,16 +37,16 @@ Snake.prototype.draw = function() {
 Snake.prototype.setListeners = function() {
   document.onkeydown = function(event) {
     if(!this.cobra.inputLocked){
-    if (event.key == "ArrowLeft" && this.cobra.direction != "right") {
+    if ((event.key == "ArrowLeft"||event.key =="a") && this.cobra.direction != "right") {
       this.cobra.inputLocked=true;
       this.cobra.direction = "left";
-    } else if (event.key == "ArrowRight" && this.cobra.direction != "left") {
+    } else if ((event.key == "ArrowRight"||event.key =="d") && this.cobra.direction != "left") {
       this.cobra.inputLocked=true;
       this.cobra.direction = "right";
-    } else if (event.key == "ArrowUp" && this.cobra.direction != "down") {
+    } else if ((event.key == "ArrowUp"||event.key =="w") && this.cobra.direction != "down") {
       this.cobra.inputLocked=true;
       this.cobra.direction = "up";
-    } else if (event.key == "ArrowDown" && this.cobra.direction != "up") {
+    } else if ((event.key == "ArrowDown"||event.key =="s") && this.cobra.direction != "up") {
       this.cobra.inputLocked=true;
       this.cobra.direction = "down";
     }}

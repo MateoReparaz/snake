@@ -50,11 +50,11 @@ Game.prototype.reset = function(config) {
 
 Game.prototype.draw = function() {
   this.background.draw();
-  this.apple.draw();
-  this.snake.draw();
   if(this.greenApple != undefined){
   this.greenApple.draw();
   }
+  this.apple.draw();
+  this.snake.draw();
 };
 
 Game.prototype.move = function() {
@@ -138,6 +138,6 @@ Game.prototype.resetEvent = function() {
 Game.prototype.eraseTimer = function(){
   setTimeout(function(){
     this.greenApple = undefined;
-  }.bind(this),4000)
+  }.bind(this),4500)
 
 }    
