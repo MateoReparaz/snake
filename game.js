@@ -19,6 +19,9 @@ Game.prototype.start = function(config) {
       this.colisionSelf();
       this.eat(config);
       this.snake.grow();
+      if (this.snake.cobra.length % 4 == 0 && !this.greenApple){  //! es hacer falsy this.greenapple envez de usar this.greenApple == undefined
+        this.greenApple = new GreenApple(this);
+        }
     }.bind(this),
     this.fps
   );
@@ -39,12 +42,17 @@ Game.prototype.reset = function(config) {
   this.background = new Background(this, config);
   this.apple = new Apple(this);
   this.snake = new Snake(this, this.apple);
+  
 };
 
 Game.prototype.draw = function() {
+  console.log(this.greenApple)
   this.background.draw();
   this.apple.draw();
   this.snake.draw();
+  if(this.greenApple != undefined){
+  this.greenApple.draw();
+  }
 };
 
 Game.prototype.move = function() {
@@ -81,6 +89,16 @@ Game.prototype.eat = function(config) {
     this.audioEat.play();
     this.updateScore(config);
     this.apple = new Apple(this);
+  }  
+  if (this.greenApple != undefined &&
+    this.snake.cobra.x[0] < this.greenApple.x + 32 &&
+    this.snake.cobra.x[0] + 32 > this.greenApple.x &&
+    this.snake.cobra.y[0] < this.greenApple.y + 32 &&
+    this.snake.cobra.y[0] + 32 > this.greenApple.y
+  ) {
+    this.audioEat.play();
+    this.updateScore(config);
+    this.greenApple = undefined;
   }
 };
 
@@ -98,11 +116,13 @@ Game.prototype.updateScore = function(config) {
 };
 
 Game.prototype.gameOver = function() {
-  this.audioDead.play();
   document.getElementById("game-over").style.display = "flex";
-  this.resetEvent()
+  this.audioDead.play();
+  this.resetEvent();
 };
 Game.prototype.resetEvent = function() {
+  this.snake.cobra.x = [];
+  this.snake.cobra.y = [];
   window.onkeydown = function(event) {
     if (event.key == "Enter") {
       window.location.reload();
