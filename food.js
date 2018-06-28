@@ -18,8 +18,10 @@ function GreenApple(game){
   this.width = 32;
   this.x = (Math.floor(Math.random() * (25 - 1)) + 1)*32;
   this.y = (Math.floor(Math.random() * (25 - 1)) + 1)*32;
+  this.images = ["images/banana.png","images/Green_Apple.png","images/fly.png"];
   this.img = new Image();
-  this.img.src = "images/Green_Apple.png";
+  this.img.src = this.images[Math.floor(Math.random()*3)]
+  
   
 }
 GreenApple.prototype.draw = function() {
