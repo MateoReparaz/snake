@@ -4,6 +4,7 @@ function Game(canvas, config) {
   this.ctx = this.canvas.getContext("2d");
   this.audioEat = new Audio("audio/eat.mp3");
   this.audioDead = new Audio("audio/dead.mp3");
+  this.audioFood = new Audio("audio/left.mp3")
   this.reset(config);
   this.start(config);
   this.score = 0;
@@ -21,7 +22,7 @@ Game.prototype.start = function(config) {
       this.colisionSelf();
       this.eat(config);
       this.snake.grow();
-      if (this.score != 0 && this.score % 4 == 0 && !this.greenApple && !this.appleExists){  //! es hacer falsy this.greenapple envez de usar this.greenApple == undefined
+      if (this.score != 0 && this.score % 5 == 0 && !this.greenApple && !this.appleExists){  //! es hacer falsy this.greenapple envez de usar this.greenApple == undefined
         this.greenApple = new GreenApple(this);
         this.eraseTimer()
         this.appleExists = true;
@@ -140,8 +141,10 @@ Game.prototype.resetEvent = function() {
 Game.prototype.eraseTimer = function(){
   setTimeout(function(){
     this.greenApple = undefined;
-    this.appleExists = false;
     this.foodTimer = parseInt(4500/this.fps);
+    this.appleExists = false;
+    this.score -=1;
+    ///////////////////////////////////////////////////////////////////////--------HAY QUE ARREGLAR ESTOOOOO!!!!!(si no comes la manzana con timer sale otra acto seguido)
   }.bind(this),4500)
 
 }    
