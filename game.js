@@ -144,7 +144,7 @@ Game.prototype.eraseTimer = function(){
     this.foodTimer = parseInt(4500/this.fps);
     this.appleExists = false;
     this.score -=1;
-    ///////////////////////////////////////////////////////////////////////--------HAY QUE ARREGLAR ESTOOOOO!!!!!(si no comes la manzana con timer sale otra acto seguido)
+    this.audioFood.pause()
   }.bind(this),4500)
 
 }    

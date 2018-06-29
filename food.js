@@ -21,7 +21,7 @@ function GreenApple(game){
   this.images = ["images/banana.png","images/greenAple.png","images/fly.png"];
   this.img = new Image();
   this.img.src = this.images[Math.floor(Math.random()*3)]
-  //this.game.audioFood.play()
+  this.game.audioFood.play()
   
   
 }
